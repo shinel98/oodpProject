@@ -117,4 +117,34 @@ public class Task {
 		
 	}
 	
+	public void showTaskByTeam() {
+		String team;
+		sc.nextLine();
+		System.out.println("찾으려고하는 팀: ");
+		team = sc.nextLine();
+		
+		if(tasklist.isEmpty() == true)
+		{
+			System.out.println("저장된 업무가 없습니다");
+		}
+		else
+		{
+			TaskRegister task = new TaskRegister();
+			int i=1;
+			
+			System.out.println("번호  팀  이름  업무");
+			System.out.println("------------------------");
+			
+			Iterator<TaskAllocate> iter = tasklist.iterator();
+			
+			while(iter.hasNext()) {
+				task = (TaskRegister)iter.next();
+				if(task.getTeam().equals(team))
+					System.out.printf("%d  %s  %s  %s\n", i++ ,task.getTeam(), task.getTeammate(), task.getTask());
+			}
+			System.out.println("------------------------");
+			System.out.println();
+		}
+	}
+	
 }
