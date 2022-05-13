@@ -15,6 +15,7 @@ public class ScheduleList {
 		System.out.println("2. 스케줄 추가");
 		System.out.println("3. 스케줄 삭제");
 		System.out.println("4. 스케줄 수정");
+		System.out.println("5. 스케줄 검색");
 		System.out.println("0. 메인메뉴로 돌아가기");
 		System.out.println("======================");
 		
@@ -97,9 +98,33 @@ public class ScheduleList {
 			
 			System.out.print("수정할 날짜: ");
 			scheduleList.get(num-1).setScheduleDate(sc.nextLine());
+		}	
+	}
+	public void searchSchedule()
+	{
+		if(scheduleList.isEmpty() == true)
+		{
+			System.out.println("저장된 스케줄이 없습니다");
 		}
 		
+		System.out.print("검색할 날짜를 입력하세요: ");
+		String date = sc.nextLine();
+		
+		Schedule c;
+		int i=1;
+		
+		System.out.println("번호  제목  날짜");
+		System.out.println("------------------------");
+		
+		Iterator<Schedule> iter = scheduleList.iterator();
+		
+		while(iter.hasNext()) {
+			c = (Schedule)iter.next();
+			if(c.getScheduleDate().equals(date))
+				System.out.printf("%d  %s  %s\n", i++ ,c.getScheduleName(), c.getScheduleDate());
+		}
 		
 	}
+	
 
 }
