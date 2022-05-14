@@ -23,7 +23,22 @@ public class ScheduleList {
 		return sc.nextInt();
 	}
 	
-	public void showSchedule()
+	public int showMenu2() {
+		
+		int choice;
+		
+		System.out.println("======================");
+		System.out.println("1. 전체 스케줄 조회");
+		System.out.println("2. 월 단위로 스케줄 조회");
+		System.out.println("0. 메인메뉴로 돌아가기");
+		System.out.println("======================");
+		
+		System.out.print(">> ");
+		return sc.nextInt();
+		
+	}
+	
+	public void showSchedule_all()
 	{
 		if(scheduleList.isEmpty() == true)
 		{
@@ -40,6 +55,50 @@ public class ScheduleList {
 			
 			Iterator<Schedule> iter = scheduleList.iterator();
 			
+			while(iter.hasNext()) {
+				c = (Schedule)iter.next();
+				System.out.printf("%d  %s  %s\n", i++ ,c.getScheduleName(), c.getScheduleDate());
+			}
+			System.out.println("------------------------");
+			System.out.println();
+		}
+	}
+	
+	public void showSchedule_month()
+	{
+		if(scheduleList.isEmpty() == true)
+		{
+			System.out.println("저장된 스케줄이 없습니다");
+		}
+		
+		else
+		{
+			Schedule c;
+			int i=1;
+			int mon;
+			String date;
+			
+			System.out.printf("확인하고 싶은 달: ");
+			mon = sc.nextInt();
+			
+			System.out.printf("\n<<<<<<<%d 월>>>>>>>\n", mon);
+			System.out.println("번호  제목  날짜");
+			System.out.println("------------------------");
+			
+			Iterator<Schedule> iter = scheduleList.iterator();
+			int index;
+			String sub;
+			
+			while(iter.hasNext()) {
+				c = (Schedule)iter.next();
+				date = c.getScheduleDate();
+				index = date.indexOf("/");
+				sub = date.substring(0, index);
+				if(mon == Integer.parseInt(sub)) {
+					System.out.printf("%d  %s  %s\n", i++ ,c.getScheduleName(), c.getScheduleDate());
+				}
+			}
+
 			while(iter.hasNext()) {
 				c = (Schedule)iter.next();
 				System.out.printf("%d  %s  %s\n", i++ ,c.getScheduleName(), c.getScheduleDate());
@@ -69,7 +128,7 @@ public class ScheduleList {
 		
 		else
 		{
-			showSchedule();
+			showSchedule_all();
 			int del_num;
 			
 			System.out.print("삭제할 기록 번호: ");
@@ -85,7 +144,7 @@ public class ScheduleList {
 		
 		else
 		{
-			showSchedule();
+			showSchedule_all();
 			
 			int num=0;
 			System.out.print("수정할 기록 번호: ");

@@ -1,7 +1,7 @@
+import java.util.Scanner;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Main {
 	// commit 
@@ -10,10 +10,12 @@ public class Main {
 		// TODO Auto-generated method stub
 		int choice;
 		int subchoice;
+		int subchoice_show;
 		Task tsk = new Task();
 		Team team = new Team();
 		RecordList record = new RecordList();
 		ScheduleList schedule = new ScheduleList();
+		OptionChange option = new OptionChange();
 		Login login = new Login();
 		BufferedWriter bw = new BufferedWriter(new FileWriter("register.txt", true));
 		
@@ -40,6 +42,7 @@ public class Main {
 		//}
 		
 		while(true) {
+			
 			choice = showMainMenu();
 			if(choice == 1)
 			{
@@ -48,7 +51,7 @@ public class Main {
 					subchoice = team.showMenu();
 					String userName;
 					int userID;
-					
+
 					if(subchoice == 1)
 						team.addMember();
 					
@@ -63,6 +66,7 @@ public class Main {
 					}
 				}
 			}
+			
 			else if(choice == 2)
 			{
 				while(true)
@@ -72,14 +76,18 @@ public class Main {
 						record.showRecord();
 					else if(subchoice == 2)
 						record.addRecord();
-					else if(subchoice == 3) 
+					else if(subchoice == 3) {
 						record.deleteRecord();
-					else if(subchoice == 4) 
+					}
+					else if(subchoice == 4) {
 						record.modifyRecord();
-					else if(subchoice == 0) 
+					}
+					else if(subchoice == 0) {
 						break;
+					}
 				}
 			}
+			
 			else if(choice == 3)
 			{
 				while(true)
@@ -89,43 +97,83 @@ public class Main {
 						tsk.showTaskByTeam();
 					else if(subchoice == 2)
 						tsk.addTask();
-					else if(subchoice == 3) 
+					else if(subchoice == 3) {
 						tsk.deleteTask();
-					else if(subchoice == 4) 
+					}
+					else if(subchoice == 4) {
 						tsk.updateTask();
-					else if(subchoice == 0) 
+					}
+					else if(subchoice == 0) {
 						break;
+					}
 				}
 			}
+			
 			else if (choice == 4)
 			{
 				while(true)
 				{
 					subchoice = schedule.showMenu();
 					if(subchoice == 1)
-						schedule.showSchedule();
+					{
+						subchoice_show = schedule.showMenu2();
+						if(subchoice_show == 1)
+							schedule.showSchedule_all();
+						else if(subchoice_show == 2)
+							schedule.showSchedule_month();
+						else if(subchoice_show == 0)
+							break;
+						
+					}
 					else if(subchoice == 2)
 						schedule.addSchedule();
-					else if(subchoice == 3) 
+					else if(subchoice == 3) {
 						schedule.deleteSchedule();
-					else if(subchoice == 4) 
+					}
+					else if(subchoice == 4) {
 						schedule.modifySchedule();
-					else if(subchoice == 0) 
+					}
+					else if(subchoice == 0) {
 						break;
+					}
 				}
 			}
-			else if (choice == 5) {
+			
+			else if(choice == 5)
+			{
+				while(true)
+				{
+					subchoice = option.showMenu();
+					if(subchoice == 1)
+						option.fontChange();
+					else if(subchoice == 2)
+						option.fontsizeChange();
+					else if(subchoice == 3) {
+						option.backgroundSetting();
+					}
+					else if(subchoice == 4) {
+						option.showCurrentOption();
+					}
+					else if(subchoice == 0) {
+						break;
+					}
+				}
+			}
+			
+			else if (choice == 6) {
 				System.out.println("로그아웃 되었습니다.");
 				break;
 			}
+			
 			else
 			{
 				System.out.println("Exit Program.");
-				return;
+				break;
 			}
 		}
 		}
-	}	
+	}
+	
 	public static int showMainMenu()
 	{
 		int choice;
@@ -135,8 +183,9 @@ public class Main {
 		System.out.println("2. 미팅기록 관리");
 		System.out.println("3. 업무 관리");
 		System.out.println("4. 스케줄 관리");
-		System.out.println("5. 로그아웃");
-		System.out.println("0. 프로그램 종료");
+		System.out.println("5. 옵션 변경");
+		System.out.println("6. 로그아웃");
+		System.out.println("0. 종료");
 		System.out.println("===========================");
 		
 		System.out.print(">> ");
@@ -145,4 +194,3 @@ public class Main {
 
 
 }
-
