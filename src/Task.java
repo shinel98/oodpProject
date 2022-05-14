@@ -7,6 +7,7 @@ public class Task {
 
 	private LinkedList<TaskAllocate> tasklist = new LinkedList<TaskAllocate>();
 	Scanner sc = new Scanner(System.in);
+	Mediator mediator = new taskMediator();
 	
 	public int showMenu() {
 		int choice;
@@ -26,7 +27,7 @@ public class Task {
 	
 	public void addTask() {
 	
-		TaskRegister task = new TaskRegister();
+		TaskRegister task = new TaskRegister(mediator);
 		sc.nextLine();
 		System.out.print("팀이름 : ");
 		task.setTeam(sc.nextLine());
@@ -35,8 +36,11 @@ public class Task {
 		System.out.print("업무이름 : ");
 		task.setTask(sc.nextLine());
 		
+		
+		mediator.addTeammate(task);
 		tasklist.add(task);
 		
+		task.send("added new task", 1);
 	}
 	public void deleteTask() {
 		if(tasklist.isEmpty() == true)
@@ -58,6 +62,10 @@ public class Task {
 			*/
 			System.out.print("삭제할 업무 번호를 입력하세요 : ");
 			del_num = sc.nextInt();
+			TaskRegister task = (TaskRegister) tasklist.get(del_num-1);
+			mediator.deleteTeammate(task);
+			
+			task.send("deleted task", 2);
 			tasklist.remove(del_num-1);
 		}
 		
@@ -78,7 +86,7 @@ public class Task {
 		
 		else
 		{
-			TaskRegister task = new TaskRegister();
+			TaskRegister task = new TaskRegister(mediator);
 			int i=1;
 			
 			System.out.println("번호  팀  이름  업무");
@@ -99,7 +107,7 @@ public class Task {
 		showTask();
 		
 		Scanner sc = new Scanner(System.in);
-		TaskRegister task = new TaskRegister();
+		TaskRegister task = new TaskRegister(mediator);
 		int choice;
 		int i=0;
 		System.out.print("수정할 번호 : ");
@@ -112,9 +120,14 @@ public class Task {
 		System.out.print("업무이름 : ");
 		task.setTask(sc.nextLine());
 		
+		TaskRegister prevtask = (TaskRegister)tasklist.get(choice-1);
+		mediator.deleteTeammate(prevtask);
 		tasklist.remove(choice-1);
-		tasklist.add(choice-1, task);
 		
+		tasklist.add(choice-1, task);
+		mediator.addTeammate(task);
+	
+		task.send("updated previous task", 3);
 	}
 	
 	public void showTaskByTeam() {
@@ -129,7 +142,7 @@ public class Task {
 		}
 		else
 		{
-			TaskRegister task = new TaskRegister();
+			TaskRegister task = new TaskRegister(mediator);
 			int i=1;
 			
 			System.out.println("번호  팀  이름  업무");

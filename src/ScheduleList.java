@@ -92,7 +92,7 @@ public class ScheduleList {
 			num = sc.nextInt();
 			
 			sc.nextLine();
-			
+		
 			System.out.print("수정할 이름: ");
 			scheduleList.get(num-1).setScheduleName(sc.nextLine());
 			

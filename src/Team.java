@@ -41,7 +41,7 @@ public class Team {
 		
 		System.out.print("이름을 입력하세요: ");
 		newMember.setName(sc.nextLine());
-		System.out.print("id를 입력하1세요: ");
+		System.out.print("id를 입력하세요: ");
 		newMember.setId(sc.nextInt());
 		sc.nextLine();
 
