@@ -1,6 +1,5 @@
 //Record�� ������ �پ��ϰ� ���� �� ���� �� ���� => ���ڵ� ������ ���� Ŭ���� �з� ����
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
