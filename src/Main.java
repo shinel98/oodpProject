@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.Scanner;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -18,6 +19,7 @@ public class Main {
 		OptionChange option = new OptionChange();
 		Login login = new Login();
 		BufferedWriter bw = new BufferedWriter(new FileWriter("register.txt", true));
+
 		
 		while(true) { 
 			choice = login.show_loginOpt();
@@ -71,7 +73,8 @@ public class Main {
 			{
 				while(true)
 				{
-					subchoice = record.showMenu();
+					MenuTemplate recordmenu= new RecordMenu();;
+					subchoice = sc.nextInt();
 					if(subchoice == 1)
 						record.showRecord();
 					else if(subchoice == 2)
@@ -175,20 +178,28 @@ public class Main {
 	}
 	
 	public static int showMainMenu()
-	{
-		int choice;
+	{	
+		IteratorPattern menu = new IteratorPattern();
 		
-		System.out.println("======== Main Menu ========");
-		System.out.println("1. 그룹 관리");
-		System.out.println("2. 미팅기록 관리");
-		System.out.println("3. 업무 관리");
-		System.out.println("4. 스케줄 관리");
-		System.out.println("5. 옵션 변경");
-		System.out.println("6. 로그아웃");
-		System.out.println("0. 종료");
-		System.out.println("===========================");
+		menu.add("======== Main Menu ========");
+		menu.add("1. 그룹 관리");
+		menu.add("2. 미팅기록 관리");
+		menu.add("3. 업무 관리");
+		menu.add("4. 스케줄 관리");
+		menu.add("5. 옵션 변경");
+		menu.add("6. 로그아웃");
+		menu.add("0. 종료");
+		menu.add("===========================");
 		
-		System.out.print(">> ");
+		menu.add(">> ");
+		
+		Iterator<String> iterator = menu.iterator(); 
+		
+		while (iterator.hasNext()) { 
+			
+			String element = iterator.next();
+			System.out.println(element); }
+		
 		return sc.nextInt();
 	}
 

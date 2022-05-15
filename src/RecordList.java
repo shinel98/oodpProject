@@ -7,20 +7,7 @@ public class RecordList {
 	static Scanner sc = new Scanner(System.in);
 	private ArrayList<Record> recordList = new ArrayList<Record>();
 	
-	public int showMenu() {
-		int choice;
-		
-		System.out.println("======================");
-		System.out.println("1.기록 조회");
-		System.out.println("2.기록 추가");
-		System.out.println("3.기록 삭제");
-		System.out.println("4.기록 수정");
-		System.out.println("0.메인메누로 돌아가기");
-		System.out.println("======================");
-		
-		System.out.print(">> ");
-		return sc.nextInt();
-	}
+
 	
 	public void showRecord()
 	{
@@ -49,7 +36,7 @@ public class RecordList {
 	public void addRecord()
 	{
 		Record newRecord = new Record();
-		sc.nextLine();
+		//sc.nextLine();
 		
 		System.out.print("미팅 제목을 입력하세요: ");
 		newRecord.setTitle(sc.nextLine());
