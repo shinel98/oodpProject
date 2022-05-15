@@ -16,10 +16,11 @@ public class Main {
 		RecordList record = new RecordList();
 		ScheduleList schedule = new ScheduleList();
 		OptionChange option = new OptionChange();
-		Login login = new Login();
+		//Login login = new Login();
 		BufferedWriter bw = new BufferedWriter(new FileWriter("register.txt", true));
 		
 		while(true) { 
+		/*
 			choice = login.show_loginOpt();
 			if(choice == 1) {
 				subchoice = login.login_check();
@@ -39,7 +40,13 @@ public class Main {
 					continue;
 				}
 			}
-		//}
+			
+		*/
+		LoginFacade lf = new LoginFacade();
+		if(lf.login() == 0) {
+			continue;
+		}
+		
 		
 		while(true) {
 			
