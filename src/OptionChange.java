@@ -2,18 +2,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class OptionChange {
+public class OptionChange extends OptionData {
 	
-	private String fontType;
-	private String fontSize;
-	private String backgroudSetting;
+	/*protected String fontType;
+	protected String fontSize;
+	protected String backgroundSetting;*/
 	
 	static Scanner sc = new Scanner(System.in);
+	OptionData optionData = new OptionData();
+	CurrentOptionDisplay currentDisplay = new CurrentOptionDisplay(optionData);
+	ChangedOptionDisplay changedDisplay = new ChangedOptionDisplay(optionData);
 	
 	public OptionChange() {
 		this.fontType = "맑은고딕";
 		this.fontSize = "10.0";
-		this.backgroudSetting = "기본화면";
+		this.backgroundSetting = "기본화면";
 	}
 	
 	public String getFontType() {
@@ -29,10 +32,14 @@ public class OptionChange {
 		this.fontSize = fontSize;
 	}
 	public String getBackgroundSetting() {
-		return backgroudSetting;
+		return backgroundSetting;
 	}
 	public void setBackgroundSetting(String backgroundSetting) {
-		this.backgroudSetting = backgroundSetting;
+		this.backgroundSetting = backgroundSetting;
+	}
+	
+	public boolean isSameString(String str1, String str2) {
+		return str1.equals(str2);
 	}
 	
 	public int showMenu()
@@ -53,12 +60,23 @@ public class OptionChange {
 		
 	public void showCurrentOption()
 	{
-		System.out.println("현재 적용되고 있는 옵션");
-		System.out.println("------------------------");
-
-		System.out.printf("글꼴: %s\n", getFontType());
-		System.out.printf("글자 크기: %s\n", getFontSize());
-		System.out.printf("배경: %s\n", getBackgroundSetting());
+		//CurrentOptionDisplay currentDisplay = new CurrentOptionDisplay(optionData);
+		
+		/*if(changedDisplay.getPreviousFontType() == null || changedDisplay.getPreviousFontSize() == null || changedDisplay.getPreviousBackgroundSetting() == null) {
+			optionData.removeOptionObserver(changedDisplay);
+			System.out.println("------------------------");
+			System.out.println("변경된 사항이 없습니다.");
+			System.out.println("========================");
+		}
+		
+		else
+			optionData.registerOptionObserver(changedDisplay);*/
+		
+		if(changedDisplay.getPreviousFontType() == null || changedDisplay.getPreviousFontSize() == null || changedDisplay.getPreviousBackgroundSetting() == null)
+			optionData.setOptions(fontType, fontSize, backgroundSetting);
+		
+		else
+			optionData.setOptions(changedDisplay.getCurrentFontType(), changedDisplay.getCurrentFontSize(), changedDisplay.getCurrentBackgroundSetting());
 		
 		System.out.println("------------------------");
 		System.out.println();
@@ -67,16 +85,24 @@ public class OptionChange {
 	public void fontChange()
 	{
 		String font;
+		//ChangedOptionDisplay changedDisplay = new ChangedOptionDisplay(optionData);
 		
 		System.out.println("------------------------");
 		System.out.print("변경할 글꼴: ");
 		sc.nextLine(); // trim \r
 		font = sc.nextLine();
 		
-		System.out.print("현재 글꼴 < " + getFontType() + " > 에서 --> ");
-		setFontType(font);
-		System.out.println("선택한 글꼴 < " + getFontType() + " > (으)로 변경이 완료되었습니다.");
-
+		/*if(isSameString(font, fontType)) {
+			optionData.removeOptionObserver(changedDisplay);
+			System.out.println("------------------------");
+			System.out.println("변경된 사항이 없습니다.");
+			System.out.println("========================");
+		}
+		
+		else
+			optionData.registerOptionObserver(changedDisplay);*/
+		
+		optionData.setOptions(font, optionData.getFontSize(), optionData.getBackgroundSetting());
 		System.out.println("------------------------");
 		System.out.println();
 	}
@@ -84,15 +110,25 @@ public class OptionChange {
 	public void fontsizeChange()
 	{
 		String fontsize;
+		//ChangedOptionDisplay changedDisplay = new ChangedOptionDisplay(optionData);
 		
 		System.out.println("------------------------");
+		
 		System.out.print("변경할 글자 크기: ");
-		sc.nextLine(); // trim \r
+		sc.nextLine(); // trim \
 		fontsize = sc.nextLine();
 		
-		System.out.print("현재 글자 크기 < " + getFontSize() + " > 에서 --> ");
-		setFontSize(fontsize);
-		System.out.println("선택한 글자 크기 < " + getFontSize() + " > (으)로 변경이 완료되었습니다.");
+		/*if(isSameString(fontsize, fontSize)) {
+			optionData.removeOptionObserver(changedDisplay);
+			System.out.println("------------------------");
+			System.out.println("변경된 사항이 없습니다.");
+			System.out.println("========================");
+		}
+		
+		else
+			optionData.registerOptionObserver(changedDisplay);*/
+		
+		optionData.setOptions(optionData.getFontType(), fontsize, optionData.getBackgroundSetting());
 
 		System.out.println("------------------------");
 		System.out.println();
@@ -101,15 +137,25 @@ public class OptionChange {
 	public void backgroundSetting()
 	{
 		String background;
+		//ChangedOptionDisplay changedDisplay = new ChangedOptionDisplay(optionData);
 		
 		System.out.println("------------------------");
+		
 		System.out.print("변경할 배경화면: ");
 		sc.nextLine(); // trim \r
 		background = sc.nextLine();
 		
-		System.out.print("현재 배경화면 < " + getBackgroundSetting() + " > 에서 --> ");
-		setBackgroundSetting(background);
-		System.out.println("선택한 배경 < " + getBackgroundSetting() + " > (으)로 변경이 완료되었습니다.");
+		/*if(isSameString(background, backgroundSetting)) {
+			optionData.removeOptionObserver(changedDisplay);
+			System.out.println("------------------------");
+			System.out.println("변경된 사항이 없습니다.");
+			System.out.println("========================");
+		}
+		
+		else
+			optionData.registerOptionObserver(changedDisplay);*/
+		
+		optionData.setOptions(optionData.getFontType(), optionData.getFontSize(), background);
 
 		System.out.println("------------------------");
 		System.out.println();

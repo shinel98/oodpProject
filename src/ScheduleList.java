@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ScheduleList {
 	
-	private ArrayList<Schedule> scheduleList = new ArrayList<Schedule>();
+	protected ArrayList<Schedule> scheduleList = new ArrayList<Schedule>();
 	static Scanner sc = new Scanner(System.in);
 	
 	public int showMenu() {
@@ -39,7 +39,9 @@ public class ScheduleList {
 	
 	public void showSchedule_all()
 	{
-		if(scheduleList.isEmpty() == true)
+		ShowSchedule show_all = new ScheduleShow_basic();
+		show_all.show(scheduleList);
+		/*if(scheduleList.isEmpty() == true)
 		{
 			System.out.println("저장된 스케줄이 없습니다");
 		}
@@ -60,12 +62,17 @@ public class ScheduleList {
 			}
 			System.out.println("------------------------");
 			System.out.println();
-		}
+		}*/
+		
 	}
 	
 	public void showSchedule_month()
 	{
-		if(scheduleList.isEmpty() == true)
+		
+		ShowSchedule show_month = new ScheduleShow_month(new ScheduleShow_basic());
+		show_month.show(scheduleList);
+		
+		/*if(scheduleList.isEmpty() == true)
 		{
 			System.out.println("저장된 스케줄이 없습니다");
 		}
@@ -104,7 +111,7 @@ public class ScheduleList {
 			}
 			System.out.println("------------------------");
 			System.out.println();
-		}
+		}*/
 	}
 	
 	public void addSchedule()
