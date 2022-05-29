@@ -2,10 +2,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class taskMediator implements Mediator {
+public class TaskMediator implements Mediator {
 	private List<TaskRegister> teammates;
 	
-	taskMediator(){
+	TaskMediator(){
 		this.teammates = new ArrayList<>();
 	}
 

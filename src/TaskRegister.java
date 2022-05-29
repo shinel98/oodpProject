@@ -1,15 +1,20 @@
 import java.util.Scanner;
 
-public class TaskRegister implements TaskAllocate {
+public class TaskRegister extends TaskAllocate {
 	private String team;
 	private String teammate;
 	private String task;
-	private Mediator mediator;
+	//private Mediator mediator;
 	
-	TaskRegister(Mediator mediator){
-		this.mediator = mediator;
+//	TaskRegister(Mediator mediator){
+//		this.mediator = mediator;
+//	}
+	
+	
+	TaskRegister(Mediator mediator) {
+		super(mediator);
+		// TODO Auto-generated constructor stub
 	}
-	
 	public String getTeam() {
 		return team;
 	}
@@ -51,3 +56,5 @@ public class TaskRegister implements TaskAllocate {
 		System.out.println(this.teammate+" Recieved Message: "+msg);
 	}	
 }
+
+
