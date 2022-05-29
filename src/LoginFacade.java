@@ -1,11 +1,12 @@
 
 public class LoginFacade {
 	Login login = new Login();
+	LoginOption loginopt = new LoginOption();
 	int choice;
 	int subchoice;
 	
 	public int login() {
-		choice = login.show_loginOpt();
+		choice = loginopt.show_loginOpt();
 		if(choice == 1) {
 			subchoice = login.login_check();
 			if(subchoice == 0) {

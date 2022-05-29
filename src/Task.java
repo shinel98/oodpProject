@@ -3,12 +3,19 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Task {
+public class Task extends TaskAllocate{
 
+	
 	private LinkedList<TaskAllocate> tasklist = new LinkedList<TaskAllocate>();
 	Scanner sc = new Scanner(System.in);
-	Mediator mediator = new taskMediator();
+	private Mediator mediator = new TaskMediator();
 	
+	Task(){}
+	
+	Task(Mediator mediator) {
+		super(mediator);
+		// TODO Auto-generated constructor stub
+	}
 	public int showMenu() {
 		int choice;
 		
@@ -159,5 +166,7 @@ public class Task {
 			System.out.println();
 		}
 	}
+	public void send(String msg, int opt) {}
+	public void receive(String msg) {}
 	
 }
