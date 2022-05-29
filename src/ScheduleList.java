@@ -2,25 +2,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class ScheduleList {
+public class ScheduleList implements Aggregate{
 	
 	protected ArrayList<Schedule> scheduleList = new ArrayList<Schedule>();
 	static Scanner sc = new Scanner(System.in);
 	
-	public int showMenu() {
-		int choice;
+
+	public ScheduleListIterator iterator() {
 		
-		System.out.println("======================");
-		System.out.println("1. 스케줄 조회");
-		System.out.println("2. 스케줄 추가");
-		System.out.println("3. 스케줄 삭제");
-		System.out.println("4. 스케줄 수정");
-		System.out.println("5. 스케줄 검색");
-		System.out.println("0. 메인메뉴로 돌아가기");
-		System.out.println("======================");
-		
-		System.out.print(">> ");
-		return sc.nextInt();
+		return new ScheduleListIterator(this);
 	}
 	
 	public int showMenu2() {
@@ -118,7 +108,7 @@ public class ScheduleList {
 	public void addSchedule()
 	{
 		Schedule newSchedule = new Schedule();
-		sc.nextLine();
+		//sc.nextLine();
 		System.out.print("스케줄 제목을 입력하세요: ");
 		newSchedule.setScheduleName(sc.nextLine());
 		
@@ -157,7 +147,7 @@ public class ScheduleList {
 			System.out.print("수정할 기록 번호: ");
 			num = sc.nextInt();
 			
-			sc.nextLine();
+			//sc.nextLine();
 		
 			System.out.print("수정할 이름: ");
 			scheduleList.get(num-1).setScheduleName(sc.nextLine());
@@ -182,7 +172,7 @@ public class ScheduleList {
 		System.out.println("번호  제목  날짜");
 		System.out.println("------------------------");
 		
-		Iterator<Schedule> iter = scheduleList.iterator();
+		ScheduleListIterator iter = this.iterator();
 		
 		while(iter.hasNext()) {
 			c = (Schedule)iter.next();
@@ -190,6 +180,14 @@ public class ScheduleList {
 				System.out.printf("%d  %s  %s\n", i++ ,c.getScheduleName(), c.getScheduleDate());
 		}
 		
+	}
+	
+	public ArrayList<Schedule> getScheduleList() {
+		return scheduleList;
+	}
+
+	public void setScheduleList(ArrayList<Schedule> scheduleList) {
+		this.scheduleList = scheduleList;
 	}
 	
 

@@ -57,9 +57,8 @@ public class Main {
 			{
 				while (true)
 				{
-					subchoice = team.showMenu();
-					String userName;
-					int userID;
+					MenuTemplate teammenu= new TeamMenu();
+					subchoice = sc.nextInt();
 
 					if(subchoice == 1)
 						team.addMember();
@@ -80,7 +79,7 @@ public class Main {
 			{
 				while(true)
 				{
-					MenuTemplate recordmenu= new RecordMenu();;
+					MenuTemplate recordmenu= new RecordMenu();
 					subchoice = sc.nextInt();
 					if(subchoice == 1)
 						record.showRecord();
@@ -92,6 +91,10 @@ public class Main {
 					else if(subchoice == 4) {
 						record.modifyRecord();
 					}
+					else if(subchoice == 5)
+					{
+						record.restoreFromMemento(record.getMementoRecordList());
+					}
 					else if(subchoice == 0) {
 						break;
 					}
@@ -102,7 +105,8 @@ public class Main {
 			{
 				while(true)
 				{
-					subchoice = tsk.showMenu();
+					MenuTemplate taskmenu= new TaskMenu();
+					subchoice = sc.nextInt();
 					if(subchoice == 1)
 						tsk.showTaskByTeam();
 					else if(subchoice == 2)
@@ -123,7 +127,8 @@ public class Main {
 			{
 				while(true)
 				{
-					subchoice = schedule.showMenu();
+					MenuTemplate schedulemenu= new ScheduleMenu();
+					subchoice = sc.nextInt();
 					if(subchoice == 1)
 					{
 						subchoice_show = schedule.showMenu2();
@@ -153,7 +158,8 @@ public class Main {
 			{
 				while(true)
 				{
-					subchoice = option.showMenu();
+					MenuTemplate optionmenu= new OptionMenu();
+					subchoice = sc.nextInt();
 					if(subchoice == 1)
 						option.fontChange();
 					else if(subchoice == 2)
@@ -188,24 +194,17 @@ public class Main {
 	{	
 		IteratorPattern menu = new IteratorPattern();
 		
-		menu.add("======== Main Menu ========");
-		menu.add("1. 그룹 관리");
-		menu.add("2. 미팅기록 관리");
-		menu.add("3. 업무 관리");
-		menu.add("4. 스케줄 관리");
-		menu.add("5. 옵션 변경");
-		menu.add("6. 로그아웃");
-		menu.add("0. 종료");
-		menu.add("===========================");
+		System.out.println("======== Main Menu ========");
+		System.out.println("1. 그룹 관리");
+		System.out.println("2. 미팅기록 관리");
+		System.out.println("3. 업무 관리");
+		System.out.println("4. 스케줄 관리");
+		System.out.println("5. 옵션 변경");
+		System.out.println("6. 로그아웃");
+		System.out.println("0. 종료");
+		System.out.println("===========================");
 		
-		menu.add(">> ");
-		
-		Iterator<String> iterator = menu.iterator(); 
-		
-		while (iterator.hasNext()) { 
-			
-			String element = iterator.next();
-			System.out.println(element); }
+		System.out.println(">> ");
 		
 		return sc.nextInt();
 	}

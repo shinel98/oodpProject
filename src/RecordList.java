@@ -2,12 +2,37 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class RecordList {
+public class RecordList implements Aggregate{
 	
 	static Scanner sc = new Scanner(System.in);
 	private ArrayList<Record> recordList = new ArrayList<Record>();
+	private CareTaker caretaker = new CareTaker();
 	
 
+	public RecordListIterator iterator() {
+		
+		return new RecordListIterator(this);
+	}
+	
+	public RecordMemento saveToMemento(int num) {
+		
+		return new RecordMemento(this.recordList.get(num).getTitle(), this.recordList.get(num).getDate(),
+				this.recordList.get(num).getContent());
+	}
+	
+	public void restoreFromMemento(ArrayList<RecordMemento> mementoRecord) {
+		
+		Record newRecord = new Record();
+		
+		newRecord.setTitle(mementoRecord.get(mementoRecord.size()-1).getTitle());
+		newRecord.setDate(mementoRecord.get(mementoRecord.size()-1).getDate());
+		newRecord.setContent(mementoRecord.get(mementoRecord.size()-1).getContent());
+		
+		mementoRecord.get(mementoRecord.size()-1).getSavedState();
+		
+		this.recordList.add(newRecord);	
+		mementoRecord.remove(mementoRecord.size()-1);
+	}
 	
 	public void showRecord()
 	{
@@ -22,10 +47,10 @@ public class RecordList {
 			System.out.println("번호  제목  날짜");
 			System.out.println("------------------------");
 			
-			Iterator<Record> iter = recordList.iterator();
+			RecordListIterator iterator = this.iterator();
 			
-			while(iter.hasNext()) {
-				c = (Record)iter.next();
+			while(iterator.hasNext()) {
+				c = (Record) iterator.next();
 				System.out.printf("%d  %s  %s\n", i++ ,c.getTitle(), c.getDate());
 			}
 			System.out.println("------------------------");
@@ -62,6 +87,8 @@ public class RecordList {
 			
 			System.out.print("삭제할 기록 번호: ");
 			del_num = sc.nextInt();
+			
+			mementoRecordList.add(saveToMemento(del_num-1));
 			recordList.remove(del_num-1);
 		}
 	}
@@ -90,6 +117,18 @@ public class RecordList {
 		else
 			System.out.println("저장된 미팅기록이 없습니다.");
 			
+	}
+	
+	public ArrayList<Record> getRecordList() {
+		return recordList;
+	}
+
+	public void setRecordList(ArrayList<Record> recordList) {
+		this.recordList = recordList;
+	}
+	
+	public ArrayList<RecordMemento> getMementoRecordList() {
+		return mementoRecordList;
 	}
 
 }

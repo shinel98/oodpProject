@@ -3,32 +3,23 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Task {
+public class Task implements Aggregate{
 
 	private LinkedList<TaskAllocate> tasklist = new LinkedList<TaskAllocate>();
+
 	Scanner sc = new Scanner(System.in);
 	Mediator mediator = new taskMediator();
 	
-	public int showMenu() {
-		int choice;
+	public TaskListIterator iterator() {
 		
-		System.out.println("======================");
-		System.out.println("1. 업무 조회");
-		System.out.println("2. 업무 추가");
-		System.out.println("3. 업무 삭제");
-		System.out.println("4. 업무 수정");
-		System.out.println("0. 메인메뉴로 돌아가기");
-		System.out.println("======================");
-		
-		System.out.print(">> ");
-		return sc.nextInt();
+		return new TaskListIterator(this);
 	}
 	
 	
 	public void addTask() {
 	
 		TaskRegister task = new TaskRegister(mediator);
-		sc.nextLine();
+		//sc.nextLine();
 		System.out.print("팀이름 : ");
 		task.setTeam(sc.nextLine());
 		System.out.print("팀원이름 : ");
@@ -92,7 +83,7 @@ public class Task {
 			System.out.println("번호  팀  이름  업무");
 			System.out.println("------------------------");
 			
-			Iterator<TaskAllocate> iter = tasklist.iterator();
+			TaskListIterator iter = this.iterator();
 			
 			while(iter.hasNext()) {
 				task = (TaskRegister)iter.next();
@@ -132,7 +123,7 @@ public class Task {
 	
 	public void showTaskByTeam() {
 		String team;
-		sc.nextLine();
+		//sc.nextLine();
 		System.out.println("찾으려고하는 팀: ");
 		team = sc.nextLine();
 		
@@ -148,7 +139,7 @@ public class Task {
 			System.out.println("번호  팀  이름  업무");
 			System.out.println("------------------------");
 			
-			Iterator<TaskAllocate> iter = tasklist.iterator();
+			TaskListIterator iter = this.iterator();
 			
 			while(iter.hasNext()) {
 				task = (TaskRegister)iter.next();
@@ -158,6 +149,13 @@ public class Task {
 			System.out.println("------------------------");
 			System.out.println();
 		}
+	}
+	
+	public LinkedList<TaskAllocate> getTasklist() {
+		return tasklist;
+	}
+	public void setTasklist(LinkedList<TaskAllocate> tasklist) {
+		this.tasklist = tasklist;
 	}
 	
 }

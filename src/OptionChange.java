@@ -9,9 +9,9 @@ public class OptionChange extends OptionData {
 	protected String backgroundSetting;*/
 	
 	static Scanner sc = new Scanner(System.in);
-	OptionData optionData = new OptionData();
-	CurrentOptionDisplay currentDisplay = new CurrentOptionDisplay(optionData);
-	ChangedOptionDisplay changedDisplay = new ChangedOptionDisplay(optionData);
+	private OptionData optionData = new OptionData();
+	private CurrentOptionDisplay currentDisplay = new CurrentOptionDisplay(optionData);
+	private ChangedOptionDisplay changedDisplay = new ChangedOptionDisplay(optionData);
 	
 	public OptionChange() {
 		this.fontType = "맑은고딕";
@@ -42,21 +42,6 @@ public class OptionChange extends OptionData {
 		return str1.equals(str2);
 	}
 	
-	public int showMenu()
-	{
-		int choice;
-		
-		System.out.println("======================");
-		System.out.println("1. 글꼴 변경");
-		System.out.println("2. 글자 크기 변경");
-		System.out.println("3. 배경 설정");
-		System.out.println("4. 현재 적용되고 있는 옵션 확인");
-		System.out.println("0. 메인메뉴로 돌아가기");
-		System.out.println("======================");
-		
-		System.out.print(">> ");
-		return sc.nextInt();
-	}
 		
 	public void showCurrentOption()
 	{
@@ -89,7 +74,7 @@ public class OptionChange extends OptionData {
 		
 		System.out.println("------------------------");
 		System.out.print("변경할 글꼴: ");
-		sc.nextLine(); // trim \r
+		//sc.nextLine(); // trim \r
 		font = sc.nextLine();
 		
 		/*if(isSameString(font, fontType)) {
@@ -115,7 +100,7 @@ public class OptionChange extends OptionData {
 		System.out.println("------------------------");
 		
 		System.out.print("변경할 글자 크기: ");
-		sc.nextLine(); // trim \
+		//sc.nextLine(); // trim \
 		fontsize = sc.nextLine();
 		
 		/*if(isSameString(fontsize, fontSize)) {
@@ -142,7 +127,7 @@ public class OptionChange extends OptionData {
 		System.out.println("------------------------");
 		
 		System.out.print("변경할 배경화면: ");
-		sc.nextLine(); // trim \r
+		//sc.nextLine(); // trim \r
 		background = sc.nextLine();
 		
 		/*if(isSameString(background, backgroundSetting)) {

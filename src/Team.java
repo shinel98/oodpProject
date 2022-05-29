@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class Team {
+public class Team implements Aggregate{
 	
 	static Scanner sc = new Scanner(System.in);
 	private static Team team = new Team();
@@ -18,26 +18,16 @@ public class Team {
 		this.teamCode = newTeamCode;
 	}
 	
-	public int showMenu()
-	{
-		int choice;
+	public TeamMemberIterator iterator() {
 		
-		System.out.println("======================");
-		System.out.println("1. 팀원 추가");
-		System.out.println("2. 팀원 삭제");
-		System.out.println("3. 팀원 보기");
-		System.out.println("0. 메인메뉴로 돌아가기");
-		System.out.println("======================");
-		
-		System.out.print(">> ");
-		return sc.nextInt();
+		return new TeamMemberIterator(this);
 	}
 	
 	
 	public void addMember() {
 		
 		User newMember = new User();
-		sc.nextLine();
+		//sc.nextLine();
 		
 		System.out.print("이름을 입력하세요: ");
 		newMember.setName(sc.nextLine());
@@ -87,7 +77,7 @@ public class Team {
 			System.out.println("번호  이름  id");
 			System.out.println("------------------------");
 			
-			Iterator<User> iter = member.iterator();
+			TeamMemberIterator iter = this.iterator();
 			
 			while(iter.hasNext()) {
 				s = (User)iter.next();
@@ -104,5 +94,13 @@ public class Team {
 
 	public void setTeamCode(String teamCode) {
 		this.teamCode = teamCode;
+	}
+	
+	public ArrayList<User> getMember() {
+		return member;
+	}
+
+	public void setMember(ArrayList<User> member) {
+		this.member = member;
 	}
 }
