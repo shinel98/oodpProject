@@ -88,7 +88,7 @@ public class RecordList implements Aggregate{
 			System.out.print("삭제할 기록 번호: ");
 			del_num = sc.nextInt();
 			
-			mementoRecordList.add(saveToMemento(del_num-1));
+			//mementoRecordList.add(saveToMemento(del_num-1));
 			recordList.remove(del_num-1);
 		}
 	}
@@ -127,8 +127,8 @@ public class RecordList implements Aggregate{
 		this.recordList = recordList;
 	}
 	
-	public ArrayList<RecordMemento> getMementoRecordList() {
-		return mementoRecordList;
-	}
+	//public ArrayList<RecordMemento> getMementoRecordList() {
+		//return mementoRecordList;
+	//}
 
 }

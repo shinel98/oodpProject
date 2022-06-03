@@ -91,10 +91,10 @@ public class Main {
 					else if(subchoice == 4) {
 						record.modifyRecord();
 					}
-					else if(subchoice == 5)
+					/*else if(subchoice == 5)
 					{
 						record.restoreFromMemento(record.getMementoRecordList());
-					}
+					}*/
 					else if(subchoice == 0) {
 						break;
 					}
@@ -136,6 +136,8 @@ public class Main {
 							schedule.showSchedule_all();
 						else if(subchoice_show == 2)
 							schedule.showSchedule_month();
+						else if(subchoice_show == 3)
+							schedule.showSchedule_urgent();
 						else if(subchoice_show == 0)
 							break;
 						
