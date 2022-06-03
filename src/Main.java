@@ -93,7 +93,7 @@ public class Main {
 					}
 					else if(subchoice == 5)
 					{
-						record.restoreFromMemento(record.getMementoRecordList());
+						record.restoreFromMemento();
 					}
 					else if(subchoice == 0) {
 						break;
@@ -192,7 +192,6 @@ public class Main {
 	
 	public static int showMainMenu()
 	{	
-		IteratorPattern menu = new IteratorPattern();
 		
 		System.out.println("======== Main Menu ========");
 		System.out.println("1. 그룹 관리");

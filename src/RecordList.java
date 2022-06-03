@@ -20,18 +20,18 @@ public class RecordList implements Aggregate{
 				this.recordList.get(num).getContent());
 	}
 	
-	public void restoreFromMemento(ArrayList<RecordMemento> mementoRecord) {
+	public void restoreFromMemento() {
 		
 		Record newRecord = new Record();
 		
-		newRecord.setTitle(mementoRecord.get(mementoRecord.size()-1).getTitle());
-		newRecord.setDate(mementoRecord.get(mementoRecord.size()-1).getDate());
-		newRecord.setContent(mementoRecord.get(mementoRecord.size()-1).getContent());
+		newRecord.setTitle(caretaker.getMementoRecordList().get(caretaker.getMementoRecordList().size()-1).getTitle());
+		newRecord.setDate(caretaker.getMementoRecordList().get(caretaker.getMementoRecordList().size()-1).getDate());
+		newRecord.setContent(caretaker.getMementoRecordList().get(caretaker.getMementoRecordList().size()-1).getContent());
 		
-		mementoRecord.get(mementoRecord.size()-1).getSavedState();
+		caretaker.getMementoRecordList().get(caretaker.getMementoRecordList().size()-1).getSavedState();
 		
 		this.recordList.add(newRecord);	
-		mementoRecord.remove(mementoRecord.size()-1);
+		caretaker.pop(caretaker.getMementoRecordList().size()-1);
 	}
 	
 	public void showRecord()
@@ -88,7 +88,7 @@ public class RecordList implements Aggregate{
 			System.out.print("삭제할 기록 번호: ");
 			del_num = sc.nextInt();
 			
-			mementoRecordList.add(saveToMemento(del_num-1));
+			caretaker.getMementoRecordList().add(saveToMemento(del_num-1));
 			recordList.remove(del_num-1);
 		}
 	}
@@ -125,10 +125,6 @@ public class RecordList implements Aggregate{
 
 	public void setRecordList(ArrayList<Record> recordList) {
 		this.recordList = recordList;
-	}
-	
-	public ArrayList<RecordMemento> getMementoRecordList() {
-		return mementoRecordList;
 	}
 
 }

@@ -7,11 +7,12 @@ public class ScheduleList implements Aggregate{
 	protected ArrayList<Schedule> scheduleList = new ArrayList<Schedule>();
 	static Scanner sc = new Scanner(System.in);
 	
-
 	public ScheduleListIterator iterator() {
 		
 		return new ScheduleListIterator(this);
+		
 	}
+	
 	
 	public int showMenu2() {
 		
@@ -172,7 +173,7 @@ public class ScheduleList implements Aggregate{
 		System.out.println("번호  제목  날짜");
 		System.out.println("------------------------");
 		
-		ScheduleListIterator iter = this.iterator();
+		Iterator<Schedule> iter = scheduleList.iterator();
 		
 		while(iter.hasNext()) {
 			c = (Schedule)iter.next();

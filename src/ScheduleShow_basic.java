@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ScheduleShow_basic extends ScheduleList implements ShowSchedule, Aggregate {
+public class ScheduleShow_basic extends ScheduleList implements ShowSchedule {
  
-	
+	/*
 	public ScheduleListIterator iterator() {
 		
 		return new ScheduleListIterator(this);
-	}
+	}*/
+	
 	
 	@Override
 	public void show(ArrayList<Schedule> scheduleList) {
@@ -27,7 +28,8 @@ public class ScheduleShow_basic extends ScheduleList implements ShowSchedule, Ag
 			System.out.println("번호  제목  날짜");
 			System.out.println("------------------------");
 			
-			ScheduleListIterator iter = this.iterator();
+			
+			Iterator<Schedule> iter = scheduleList.iterator();
 			
 			while(iter.hasNext()) {
 				c = (Schedule)iter.next();
