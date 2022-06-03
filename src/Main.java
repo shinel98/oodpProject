@@ -95,6 +95,7 @@ public class Main {
 					{
 						record.restoreFromMemento();
 					}
+
 					else if(subchoice == 0) {
 						break;
 					}
@@ -136,6 +137,8 @@ public class Main {
 							schedule.showSchedule_all();
 						else if(subchoice_show == 2)
 							schedule.showSchedule_month();
+						else if(subchoice_show == 3)
+							schedule.showSchedule_urgent();
 						else if(subchoice_show == 0)
 							break;
 						

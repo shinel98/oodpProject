@@ -89,6 +89,7 @@ public class RecordList implements Aggregate{
 			del_num = sc.nextInt();
 			
 			caretaker.getMementoRecordList().add(saveToMemento(del_num-1));
+
 			recordList.remove(del_num-1);
 		}
 	}
@@ -126,5 +127,11 @@ public class RecordList implements Aggregate{
 	public void setRecordList(ArrayList<Record> recordList) {
 		this.recordList = recordList;
 	}
+
+	
+	public ArrayList<RecordMemento> getMementoRecordList() {
+		return getMementoRecordList();
+	}
+
 
 }
