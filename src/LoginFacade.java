@@ -30,4 +30,7 @@ public class LoginFacade {
 			}
 		}
 	}
+	public void logoutCheck() {
+		login.logout_check();
+	}
 }

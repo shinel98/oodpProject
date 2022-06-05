@@ -92,4 +92,8 @@ public class Login {
 		return noLoggedInState;
 	}
 	
+	public void logout_check() {
+		currentState.printMessage();
+	}
+	
 }
