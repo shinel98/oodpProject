@@ -186,7 +186,7 @@ public class Main {
 			}
 			
 			else if (choice == 6) {
-				System.out.println("로그아웃 되었습니다.");
+				lf.logoutCheck();
 				break;
 			}
 			

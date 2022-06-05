@@ -31,8 +31,13 @@ public class LoginFacade {
 			}
 		}
 	}
+
 	
 	public static LoginFacade getInstance() {
 		return loginF;
+	}
+
+	public void logoutCheck() {
+		login.logout_check();
 	}
 }
