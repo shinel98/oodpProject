@@ -6,7 +6,8 @@ public class RecordList implements Aggregate{
 	
 	static Scanner sc = new Scanner(System.in);
 	private ArrayList<Record> recordList = new ArrayList<Record>();
-	private CareTaker caretaker = new CareTaker();
+	private static RecordList records = new RecordList();
+	private RecordCareTaker caretaker = new RecordCareTaker();
 	
 
 	public RecordListIterator iterator() {
@@ -131,6 +132,10 @@ public class RecordList implements Aggregate{
 	
 	public ArrayList<RecordMemento> getMementoRecordList() {
 		return getMementoRecordList();
+	}
+	
+	public static RecordList getInstance() {
+		return records;
 	}
 
 

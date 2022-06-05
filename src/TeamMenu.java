@@ -1,6 +1,8 @@
 
 public class TeamMenu extends MenuTemplate{
 	
+	
+	@Override
 	public void showMenu()
 	{
 		System.out.println("1. 팀원 추가");

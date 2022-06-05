@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class CareTaker {
+public class RecordCareTaker {
 	
 	private ArrayList<RecordMemento> mementoRecordList = new ArrayList<RecordMemento>();
 	

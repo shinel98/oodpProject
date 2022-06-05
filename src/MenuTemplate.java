@@ -10,6 +10,5 @@ public abstract class MenuTemplate {
 		
 	}
 	
-	protected abstract void showMenu();	
-	
+	public abstract void showMenu();
 }

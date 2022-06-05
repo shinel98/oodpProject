@@ -9,6 +9,8 @@ public class ScheduleShow_basic extends ScheduleList implements ShowSchedule {
 		return new ScheduleListIterator(this);
 	}*/
 	
+
+	
 	
 	@Override
 	public void show(ArrayList<Schedule> scheduleList) {
@@ -28,10 +30,11 @@ public class ScheduleShow_basic extends ScheduleList implements ShowSchedule {
 			System.out.println("번호  제목  날짜");
 			System.out.println("------------------------");
 			
-			
+			//ScheduleListIterator iter = this.iterator();
 			Iterator<Schedule> iter = scheduleList.iterator();
 			
 			while(iter.hasNext()) {
+			//System.out.println("#########");
 				c = (Schedule)iter.next();
 				System.out.print(String.format("%2d  ", i++));
 				System.out.print(String.format("%3s  ", c.getScheduleName()));

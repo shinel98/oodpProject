@@ -103,4 +103,8 @@ public class Team implements Aggregate{
 	public void setMember(ArrayList<User> member) {
 		this.member = member;
 	}
+	
+	public static Team getInstance() {
+		return team;
+	}
 }

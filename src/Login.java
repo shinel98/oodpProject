@@ -12,6 +12,7 @@ public class Login {
 	private String id = null;
 	private String pw = null;
 	private Scanner sc = new Scanner(System.in);
+	private static Login login = new Login();
 	//회원 가입
 	public int register() {
 		try {
@@ -65,6 +66,10 @@ public class Login {
 			return 0;
 		}
 		return 0;
+	}
+	
+	public static Login getInstance() {
+		return login;
 	}
 	
 }
