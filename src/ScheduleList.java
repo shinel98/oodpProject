@@ -162,7 +162,7 @@ public class ScheduleList implements Aggregate{
 		System.out.print("스케줄 제목을 입력하세요: ");
 		newSchedule.setScheduleName(sc.nextLine());
 		
-		System.out.print("스케줄 날짜을 입력하세요: ");
+		System.out.print("스케줄 날짜를 <월/일> 형식으로 입력하세요: ");
 		newSchedule.setScheduleDate(sc.nextLine());
 		
 		scheduleList.add(newSchedule);
@@ -197,12 +197,12 @@ public class ScheduleList implements Aggregate{
 			System.out.print("수정할 기록 번호: ");
 			num = sc.nextInt();
 			
-			//sc.nextLine();
+			sc.nextLine();
 		
 			System.out.print("수정할 이름: ");
 			scheduleList.get(num-1).setScheduleName(sc.nextLine());
 			
-			System.out.print("수정할 날짜: ");
+			System.out.print("수정할 날짜를 <월/일> 형식으로 입력: ");
 			scheduleList.get(num-1).setScheduleDate(sc.nextLine());
 		}	
 	}
