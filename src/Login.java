@@ -8,10 +8,21 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Login {
-	private int num;
+	private State currentState;
+	private State noLoggedInState;
+	private State LoggedInState;
 	private String id = null;
 	private String pw = null;
 	private Scanner sc = new Scanner(System.in);
+	
+	
+	public Login() {
+		// 처음엔 Login이 안된 상태 (NoLoggedIn)
+		this.LoggedInState = new LoggedIn(this);
+		this.noLoggedInState = new NoLoggedIn(this);
+				
+		this.currentState = noLoggedInState;
+	}
 	//회원 가입
 	public int register() {
 		try {
@@ -50,6 +61,8 @@ public class Login {
 					pw = br.readLine();
 					if(pw.equals(input_pw)) {
 						br.close();
+						// 로그인 상태로 이동 
+						currentState.getLogin();
 						return  1;
 					}
 				}
@@ -65,6 +78,18 @@ public class Login {
 			return 0;
 		}
 		return 0;
+	}
+	
+	public void setState(State newState) {
+		this.currentState = newState;
+	}
+	
+	public State getLoggedInState() {
+		return LoggedInState;
+	}
+	
+	public State getNoLoggedInState() {
+		return noLoggedInState;
 	}
 	
 }
