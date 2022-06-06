@@ -1,13 +1,13 @@
 
 public class DisplayMode {
 	
-    private State state;
+    private State_DisplayMode state;
     
     public DisplayMode() {
         state = new NightModeOFF();
     }
     
-    public void setState(State state) {
+    public void setState(State_DisplayMode state) {
         this.state = state;
     }
     

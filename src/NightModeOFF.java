@@ -1,5 +1,5 @@
 
-public class NightModeOFF implements State {
+public class NightModeOFF implements State_DisplayMode {
 	
     private static NightModeOFF off = new NightModeOFF(); // OFF 클래스의 인스턴스로 초기화됨
     NightModeOFF() { }
