@@ -4,8 +4,11 @@ import java.util.Scanner;
 
 public class ScheduleList implements Aggregate{
 	
-	protected ArrayList<Schedule> scheduleList = new ArrayList<Schedule>();
+	private ArrayList<Schedule> scheduleList = new ArrayList<Schedule>();
 	static Scanner sc = new Scanner(System.in);
+	private static ScheduleList schedules = new ScheduleList();
+	private ScheduleCareTaker caretaker = new ScheduleCareTaker();
+
 	
 	public ScheduleListIterator iterator() {
 		
@@ -13,6 +16,23 @@ public class ScheduleList implements Aggregate{
 		
 	}
 	
+	public ScheduleMemento saveToMemento(int num) {
+		
+		return new ScheduleMemento(this.scheduleList.get(num).getScheduleName(), this.scheduleList.get(num).getScheduleDate());
+	}
+	
+	public void restoreFromMemento() {
+		
+		Schedule newSchedule = new Schedule();
+		
+		newSchedule.setScheduleName(caretaker.getMementoScheduleList().get(caretaker.getMementoScheduleList().size()-1).getScheduleName());
+		newSchedule.setScheduleDate(caretaker.getMementoScheduleList().get(caretaker.getMementoScheduleList().size()-1).getScheduleDate());
+		
+		caretaker.getMementoScheduleList().get(caretaker.getMementoScheduleList().size()-1).getSavedState();
+		
+		this.scheduleList.add(newSchedule);	
+		caretaker.pop(caretaker.getMementoScheduleList().size()-1);
+	}
 	
 	public int showMenu2() {
 		
@@ -180,6 +200,7 @@ public class ScheduleList implements Aggregate{
 			
 			System.out.print("삭제할 기록 번호: ");
 			del_num = sc.nextInt();
+			caretaker.getMementoScheduleList().add(saveToMemento(del_num-1));
 			scheduleList.remove(del_num-1);
 		}
 	}
@@ -238,6 +259,10 @@ public class ScheduleList implements Aggregate{
 
 	public void setScheduleList(ArrayList<Schedule> scheduleList) {
 		this.scheduleList = scheduleList;
+	}
+	
+	public static ScheduleList getInstance() {
+		return schedules;
 	}
 	
 

@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Task extends TaskAllocate implements Aggregate{
 	
 	private LinkedList<TaskAllocate> tasklist = new LinkedList<TaskAllocate>();
+	private static Task tasks = new Task();
 
 	Scanner sc = new Scanner(System.in);
 	private Mediator mediator = new TaskMediator();
@@ -166,8 +167,13 @@ public class Task extends TaskAllocate implements Aggregate{
 	public LinkedList<TaskAllocate> getTasklist() {
 		return tasklist;
 	}
+	
 	public void setTasklist(LinkedList<TaskAllocate> tasklist) {
 		this.tasklist = tasklist;
+	}
+	
+	public static Task getInstance() {
+		return tasks;
 	}
 	
 }

@@ -12,6 +12,7 @@ public class OptionChange extends OptionData {
 	private OptionData optionData = new OptionData();
 	private CurrentOptionDisplay currentDisplay = new CurrentOptionDisplay(optionData);
 	private ChangedOptionDisplay changedDisplay = new ChangedOptionDisplay(optionData);
+	private static OptionChange option = new OptionChange();
 	
 	public OptionChange() {
 		this.fontType = "맑은고딕";
@@ -144,6 +145,10 @@ public class OptionChange extends OptionData {
 
 		System.out.println("------------------------");
 		System.out.println();
+	}
+	
+	public static OptionChange getInstance() {
+		return option;
 	}
 
 }

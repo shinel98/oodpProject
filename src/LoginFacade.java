@@ -1,9 +1,10 @@
 
 public class LoginFacade {
-	Login login = new Login();
+	Login login = Login.getInstance();
 	LoginOption loginopt = new LoginOption();
 	int choice;
 	int subchoice;
+	private static LoginFacade loginF = new LoginFacade();
 	
 	public int login() {
 		choice = loginopt.show_loginOpt();
@@ -30,6 +31,12 @@ public class LoginFacade {
 			}
 		}
 	}
+
+	
+	public static LoginFacade getInstance() {
+		return loginF;
+	}
+
 	public void logoutCheck() {
 		login.logout_check();
 	}

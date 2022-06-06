@@ -14,6 +14,8 @@ public class Login {
 	private String id = null;
 	private String pw = null;
 	private Scanner sc = new Scanner(System.in);
+	private static Login login = new Login();
+
 	
 	
 	public Login() {
@@ -80,6 +82,11 @@ public class Login {
 		return 0;
 	}
 	
+
+	public static Login getInstance() {
+		return login;
+	}
+
 	public void setState(State newState) {
 		this.currentState = newState;
 	}

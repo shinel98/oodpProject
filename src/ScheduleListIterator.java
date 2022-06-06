@@ -14,6 +14,7 @@ public class ScheduleListIterator implements Iterator{
 	
 	public boolean hasNext() {
 		
+		System.out.println(list.getScheduleList().size()); //0
 		if(index < list.getScheduleList().size())
 			return true;
 		
@@ -24,10 +25,10 @@ public class ScheduleListIterator implements Iterator{
 	
 	public Object next() {
 		
-		Schedule record = list.getScheduleList().get(index);
+		Schedule schedule = list.getScheduleList().get(index);
 		index++;
 		
-		return record;
+		return schedule;
 		
 	}
 

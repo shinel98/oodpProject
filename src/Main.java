@@ -12,11 +12,11 @@ public class Main {
 		int choice;
 		int subchoice;
 		int subchoice_show;
-		Task tsk = new Task();
-		Team team = new Team();
-		RecordList record = new RecordList();
-		ScheduleList schedule = new ScheduleList();
-		OptionChange option = new OptionChange();
+		Task tsk = Task.getInstance();
+		Team team = Team.getInstance();
+		RecordList record = RecordList.getInstance();
+		ScheduleList schedule = ScheduleList.getInstance();
+		OptionChange option = OptionChange.getInstance();
 		//Login login = new Login();
 		BufferedWriter bw = new BufferedWriter(new FileWriter("register.txt", true));
 
@@ -44,7 +44,7 @@ public class Main {
 			}
 			
 		*/
-		LoginFacade lf = new LoginFacade();
+		LoginFacade lf = LoginFacade.getInstance();
 		if(lf.login() == 0) {
 			continue;
 		}
@@ -151,6 +151,12 @@ public class Main {
 					else if(subchoice == 4) {
 						schedule.modifySchedule();
 					}
+					
+					else if(subchoice == 5)
+					{
+						schedule.restoreFromMemento();
+					}
+					
 					else if(subchoice == 0) {
 						break;
 					}
