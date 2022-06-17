@@ -165,6 +165,7 @@ public class Main {
 			
 			else if(choice == 5)
 			{
+				DisplayMode mode = new DisplayMode();
 				while(true)
 				{
 					MenuTemplate optionmenu= new OptionMenu();
@@ -177,6 +178,12 @@ public class Main {
 						option.backgroundSetting();
 					}
 					else if(subchoice == 4) {
+						mode.on_button_pushed();
+					}
+					else if(subchoice == 5) {
+						mode.off_button_pushed();
+					}
+					else if(subchoice == 6) {
 						option.showCurrentOption();
 					}
 					else if(subchoice == 0) {
