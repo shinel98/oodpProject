@@ -33,7 +33,7 @@ public class LoginFacade {
 	}
 
 	
-	public static LoginFacade getInstance() {
+	public static LoginFacade getInstance(){
 		return loginF;
 	}
 
