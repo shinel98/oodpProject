@@ -154,7 +154,7 @@ public class Main {
 					
 					else if(subchoice == 5)
 					{
-						schedule.restoreFromMemento();
+						schedule.restoreFromMemento(  );
 					}
 					
 					else if(subchoice == 0) {
