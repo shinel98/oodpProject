@@ -8,8 +8,8 @@ public class ScheduleShow_basic extends ScheduleList implements ShowSchedule {
 		
 		return new ScheduleListIterator(this);
 	}*/
-	
 
+	
 	
 	
 	@Override
